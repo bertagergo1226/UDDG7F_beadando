@@ -1,0 +1,24 @@
+#!/bin/bash
+
+YEAR=$(date +%Y)
+MONTH=$(date +%m)
+DAY=$(date +%d)
+HOUR=$(date +%H)
+MINUTE=$(date +%M)
+SECONDS=$(date +%S)
+
+echo -e "A rendelkezésre álló memória terület:\n\n\n">/home/gergo/OP1/asd.txt
+free -m >> /home/gergo/OP1/asd.txt
+ 
+FROM=opkisnagy@gmail.com
+TO=opkisnagy@gmail.com
+SMTPSERVER=smtp.googlemail.com:587
+USERNAME=opkisnagy
+PASSWORD=Ab12345Ab
+SUBJECT=INFO
+ 
+echo -e "\n\n\n$YEAR.$MONTH.$DAY - $HOUR:$MINUTE:$SECONDS">>/home/gergo/OP1/asd.txt
+
+sendemail -f $FROM -t $TO -u $SUBJECT -o message-file=/home/gergo/OP1/asd.txt -s $SMTPSERVER -xu $USERNAME -xp $PASSWORD 
+
+rm asd.txt
